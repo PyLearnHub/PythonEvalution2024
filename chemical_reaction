@@ -1,0 +1,15 @@
+def chemical_formula(chem_str):
+    result = []
+    if '(' not in chem_str:
+        return chem_str
+    chem_list = chem_str.split('(', maxsplit=1)
+    for i in chem_list:
+        if i.__contains__(')'):
+            if i.isalnum() and i.isdigit():
+                chem_str = chem_str.replace('(', '').replace(')', '')
+                print(chem_str)
+                for j in chem_str[0: len(chem_str) - 1]:
+                    new_str = j + chem_str[-1]
+                    result.append(new_str)
+    result = ''.join(result)
+    result
