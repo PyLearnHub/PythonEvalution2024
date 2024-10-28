@@ -1,0 +1,44 @@
+# Problem 1:
+def find_strict_attack(*input_list):
+    i = 0
+    j = 0
+    count = 0
+    for each_list in input_list:
+        if (each_list[i] > each_list[i + 1]) and (each_list[j] > each_list[j + 1]):
+            count += 1
+            i += 1
+            j += 1
+        else:
+            count = 0
+    return count
+
+
+#Problem 2:
+
+def jug_fill(x, y, target):
+    x = int(input("Enter the jug capacity of x :"))
+    y = int(input("Enter the jug capacity of y :"))
+    target = int(input("Enter the target to attain :")
+    
+
+
+
+#Medium
+# Problem 3:
+
+def min_window():
+    s = input('').upper()
+    t = input('').upper()
+    result = ''
+    from collections import Counter
+    str_data = Counter(s)
+    for word in t:
+        if word in str_data:
+            print(word, end='')
+        else:
+            None
+    return result
+
+
+value = min_window()
+print(value)
