@@ -12,4 +12,4 @@ def chemical_formula(chem_str):
                     new_str = j + chem_str[-1]
                     result.append(new_str)
     result = ''.join(result)
-    result
+    return result
