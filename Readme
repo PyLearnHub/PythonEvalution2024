@@ -1,1 +1,107 @@
-PythonEvalution2024
+# Problem Solutions
+
+This repository contains solutions for four distinct problems written in Python. Each solution is implemented as a function, and examples are provided to demonstrate their functionality.
+
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Problem Descriptions](#problem-descriptions)
+  - [Problem 1: Counting Weak Characters](#problem-1-counting-weak-characters)
+  - [Problem 2: Jug Problem](#problem-2-jug-problem)
+  - [Problem 3: Minimum Window Substring](#problem-3-minimum-window-substring)
+  - [Problem 4: Chemical Formula Parsing](#problem-4-chemical-formula-parsing)
+- [How to Run](#how-to-run)
+- [Example Usage](#example-usage)
+
+## Requirements
+
+- Python 3.x
+
+## Problem Descriptions
+
+### Problem 1: Counting Weak Characters
+
+Given an array of characters, where each character has two properties—attack and defense—determine the number of "weak" characters. A character is weak if there exists another character with both a higher attack and a higher defense.
+
+- **Input:** A 2D array `characters`, where each element is of the form `[attack, defense]`.
+- **Output:** An integer representing the count of weak characters.
+
+#### Test Cases
+
+- Input: `[[5,5],[6,3],[3,6]]`  
+  Output: `0`
+  
+- Input: `[[2,2],[3,3]]`  
+  Output: `1`
+  
+- Input: `[[1,5],[10,4],[4,3]]`  
+  Output: `1`
+
+---
+
+### Problem 2: Jug Problem
+
+Given two jugs with capacities `x` liters and `y` liters, determine if it is possible to measure exactly a given `target` amount of water using the jugs. You can perform operations like filling a jug completely, emptying a jug, or transferring water from one jug to another.
+
+- **Input:** Three integers `x`, `y`, and `target`.
+- **Output:** A boolean indicating whether the target amount can be measured.
+
+#### Test Cases
+
+- Input: `x = 3, y = 5, target = 4`  
+  Output: `True`
+  
+- Input: `x = 2, y = 6, target = 5`  
+  Output: `False`
+  
+- Input: `x = 1, y = 2, target = 3`  
+  Output: `True`
+
+---
+
+### Problem 3: Minimum Window Substring
+
+Given two strings `s` and `t`, find the smallest substring in `s` that contains all characters of `t`. If no such substring exists, return an empty string.
+
+- **Input:** Strings `s` and `t`.
+- **Output:** The minimum substring of `s` that contains all characters of `t`.
+
+#### Test Cases
+
+- Input: `s = "ADOBECODEBANC", t = "ABC"`  
+  Output: `"BANC"`
+  
+- Input: `s = "XAYBZC", t = "ABC"`  
+  Output: `"AYBZC"`
+  
+- Input: `s = "XYZXYZXYZ", t = "ABC"`  
+  Output: `""`
+
+---
+
+### Problem 4: Chemical Formula Parsing
+
+Given a string representing a chemical formula, return a string showing the count of each atom in the formula. Elements are sorted alphabetically, and if an element has a count greater than 1, its count is displayed.
+
+- **Input:** A string `formula` representing the chemical formula.
+- **Output:** A formatted string showing the count of each atom.
+
+#### Test Cases
+
+- Input: `formula = "H2O"`  
+  Output: `"H2O"`
+  
+- Input: `formula = "Mg(OH)2"`  
+  Output: `"H2MgO2"`
+  
+- Input: `formula = "K4(ON(SO3)2)2"`  
+  Output: `"K4N2O14S4"`
+
+---
+
+## How to Run
+
+1. Clone the repository.
+   ```bash
+   git clone <repository_url>
+   cd <repository_directory>
