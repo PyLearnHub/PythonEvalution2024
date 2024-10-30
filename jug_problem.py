@@ -11,9 +11,11 @@ def count_weak_characters(characters): # problem 3
             if characters[character][attack] < characters[step][attack] and characters[character][defence] < \
                     characters[step][defence]:
                 total_weak_characters += 1
+                break
             elif characters[step][attack] < characters[character][attack] and characters[step][defence] < \
                     characters[character][defence]:
                 total_weak_characters += 1
+                break
 
     return total_weak_characters
 
@@ -26,11 +28,10 @@ def is_jug_fill(jug_1, jug_2, target): # problem 2
         return True
     elif jug_2 + jug_1 > target:
         return False
-    elif jug_1 % 2 == 0 and jug_2 % 2 == 0:
-        if target % 2 == 0:
-            return True
-        else:
-            return False
+     elif target == math.gcd(jug_1, jug_2) == 0:
+        return True
+    else:
+        return False
 
 
 def fin_min_window(s, t): # problem 1
