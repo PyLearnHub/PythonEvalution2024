@@ -1,0 +1,14 @@
+FUNCTION find_minimum_window(source_str, target):
+    FOR window_size FROM LENGTH(target) TO LENGTH(source_str):
+        FOR start_index FROM 0 TO LENGTH(source_str) - window_size + 1:
+            SET current_window TO SUBSTRING(source_str, start_index, start_index + window_size)
+            SET matching_chars TO LENGTH(target)
+
+            FOR EACH char IN target:
+                IF char IN current_window THEN
+                    DECREMENT matching_chars BY 1
+
+            IF matching_chars == 0 THEN
+                RETURN SUBSTRING(source_str, start_index, start_index + window_size)
+
+    RETURN empty string ('')

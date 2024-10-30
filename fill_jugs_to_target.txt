@@ -1,0 +1,5 @@
+FUNCTION fill_jugs_to_target(jug1, jug2, target_litres):
+    IF target_litres > (jug1 + jug2):
+        RETURN False
+
+    RETURN (target_litres MOD GCD(jug1, jug2)) == 0

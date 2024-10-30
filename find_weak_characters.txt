@@ -1,0 +1,12 @@
+FUNCTION find_weak_characters(characters):
+    SET weak_characters to 0
+
+    FOR i FROM 0 TO length(characters) - 2:
+        FOR j FROM i + 1 TO length(characters) - 1:
+            IF (characters[i][0] < characters[j][0] AND characters[i][1] < characters[j][1]) 
+                OR (characters[i][0] > characters[j][0] AND characters[i][1] > characters[j][1]):
+                
+                INCREMENT weak_characters by 1
+
+    RETURN weak_characters
+

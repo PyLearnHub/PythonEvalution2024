@@ -1,0 +1,53 @@
+FUNCTION formula_aligner(formula):
+    INITIALIZE atom_count AS an empty dictionary to hold atom counts in the current group
+    INITIALIZE atom_holder AS an empty list to store atom_count for nested groups
+    SET index TO 0
+
+    WHILE index < LENGTH(formula):
+        IF formula[index] == '(' THEN
+            PUSH a copy of atom_count onto atom_holder
+            RESET atom_count to an empty dictionary
+            INCREMENT index
+
+        ELSE IF formula[index] == ')' THEN
+            INCREMENT index
+            SET multiplier TO 0
+
+            WHILE index < LENGTH(formula) AND formula[index] is a digit:
+                UPDATE multiplier = multiplier * 10 + integer value of formula[index]
+                INCREMENT index
+            SET multiplier = multiplier if multiplier > 0 ELSE 1
+
+            FOR EACH (atom, count) IN atom_count:
+                IF atom exists in atom_holder[-1] THEN
+                    ADD count * multiplier TO atom_holder[-1][atom]
+                ELSE
+                    SET atom_holder[-1][atom] TO count * multiplier
+            SET atom_count TO atom_holder.pop()
+
+        ELSE:
+            SET j TO index + 1
+            WHILE j < LENGTH(formula) AND formula[j] is a lowercase letter:
+                INCREMENT j
+            SET atom TO SUBSTRING of formula from index to j
+            SET index TO j
+            SET count TO 0
+
+            WHILE index < LENGTH(formula) AND formula[index] is a digit:
+                UPDATE count = count * 10 + integer value of formula[index]
+                INCREMENT index
+            SET count TO count if count > 0 ELSE 1
+
+            IF atom exists in atom_count THEN
+                INCREMENT atom_count[atom] BY count
+            ELSE:
+                SET atom_count[atom] TO count
+
+    INITIALIZE result AS an empty list
+
+    FOR EACH atom IN sorted keys of atom_count:
+        APPEND atom TO result
+        IF atom_count[atom] > 1 THEN
+            APPEND string value of atom_count[atom] TO result
+
+    RETURN joined elements of result AS string
