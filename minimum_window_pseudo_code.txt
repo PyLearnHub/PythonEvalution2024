@@ -1,0 +1,26 @@
+FUNCTION minimum_window(s, t):
+    SET min_window = ""                // Initialize the result as an empty string
+    SET min_length = INFINITY               // Initialize minimum length to infinity
+
+    FOR i FROM 0 TO LENGTH(s) - 1:
+        FOR j FROM i + 1 TO LENGTH(s):
+
+            SET window = s[i:j]
+            SET count = 0                              
+            FOR k FROM 0 TO LENGTH(t) - 1:
+
+                IF t[k] IN window THEN:
+                    INCREMENT count by 1    // Increment count if character from t is found in window
+            
+            // Check if all characters from t are found in window
+            IF count == LENGTH(t) THEN:
+
+                // Check if the current window is smaller than the previously found minimum window
+                IF min_length > LENGTH(window) THEN:
+
+                    min_length = LENGTH(window) // Update minimum length
+                    min_window = window      // Update result with the new minimum window
+
+    RETURN min_window                   // Return the resulting minimum window
+
+

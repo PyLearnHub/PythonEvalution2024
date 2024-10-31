@@ -1,0 +1,67 @@
+FUNCTION count_of_atoms(formula):
+    // Initialize a stack to hold previous counts for nested groups
+    SET prev_count_stack = []
+
+    // Initialize a dictionary to keep track of the current atom counts
+    SET current_count = DEFAULTDICTIONARY(int)
+    SET i = 0
+
+    WHILE i < LENGTH(formula):
+
+        // Check if the current character is the start of a new element
+        IF formula[i] is uppercase letter THEN:
+            SET j = i + 1
+            WHILE j < LENGTH(formula) AND formula[j] is lowercase letter:
+                INCREMENT j
+            SET element = SUBSTRING(formula, i, j)
+            SET i = j
+
+            // Initialize count for the current element
+            SET count = 0
+            WHILE i < LENGTH(formula) AND formula[i] is digit:
+                count = count * 10 + INTEGER(formula[i])
+                INCREMENT i
+
+            IF count > 0 THEN:
+                INCREMENT current_count[element] by count
+            ELSE:
+                INCREMENT current_count[element] by 1
+
+        ELSE IF formula[i] is '(' THEN:
+            // Push the current count onto the stack for later use
+            PUSH current_count onto prev_count_stack
+            SET current_count = DEFAULTDICTIONARY(int)
+            INCREMENT i
+
+        ELSE IF formula[i] is ')' THEN:
+            INCREMENT i
+            SET count = 0
+            WHILE i < LENGTH(formula) AND formula[i] is digit:
+                count = count * 10 + INTEGER(formula[i])
+                INCREMENT i
+
+            IF count == 0 THEN:
+                SET count = 1
+
+            // Multiply the counts of the current group by the count
+            FOR EACH element IN current_count:
+                current_count[element] = current_count[element] * count
+
+            // Merge back to the previous counts if they exist
+            IF prev_count_stack is not empty THEN:
+                SET previous_count = POP from prev_count_stack
+                FOR EACH element, cnt IN current_count:
+                    previous_count[element] = previous_count[element] + cnt
+                // Set the current count back to the previous count
+                SET current_count = previous_count
+
+    SET result = []
+
+    FOR EACH element IN SORT(current_count.keys()):
+        IF current_count[element] > 1 THEN:
+            APPEND element + current_count[element] to result
+        ELSE:
+            APPEND element to result
+
+    RETURN JOIN(result)
+
