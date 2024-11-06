@@ -1,0 +1,24 @@
+FUNCTION weak_characters(properties):
+
+    SET n = LENGTH(properties)       
+    SET weak_count = 0                 
+    SET index = 0 
+    
+     WHILE index < n: 
+
+	// Get the attack and defense values of the current character
+        SET attack = properties[i][0]   
+        SET defense = properties[i][1] 
+        
+        FOR j FROM 0 TO n - 1:
+	    // Ensure not to compare the character with itself
+            IF j != i THEN:
+		// Check if the other character has both higher attack and defense
+                IF properties[j][0] > attack AND properties[j][1] > defense THEN:
+                    INCREMENT weak_count by 1  
+                    BREAK 
+
+	// Move to the next character in the outer loop                     
+	INCREMENT index by 1
+
+    RETURN weak_count             

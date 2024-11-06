@@ -1,0 +1,15 @@
+FUNCTION is_jugs_filled_target(jug1, jug2, target):
+
+    // Check if the total capacity of both jugs is less than the target
+    IF jug1 + jug2 < target THEN:
+        RETURN False
+
+    // Calculate the greatest common divisor (GCD) of the two jug capacities
+    SET gcd = GCD(jug1, jug2)
+
+    // Check if the target is a multiple of the GCD
+    IF target MOD gcd == 0 THEN:
+        RETURN True
+
+    RETURN False
+
